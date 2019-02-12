@@ -1,1 +1,1 @@
-# Remix MythiX Plugin
+# Remix MythX Plugin
