@@ -1,11 +1,13 @@
 {
-  "name": "remix-mythix-plugin",
+  "name": "remix-mythx-plugin",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
+    "config": "^3.0.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-redux": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,8 +24,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "react-redux": "^6.0.0"
-  }
+  ]
 }
