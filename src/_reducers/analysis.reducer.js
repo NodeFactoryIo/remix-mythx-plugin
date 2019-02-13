@@ -1,6 +1,6 @@
 import { analysisConstants } from '../_constants'
 
-const initialState = {}
+const initialState = {reports: {}, isSubmitting: false, isRequestingReport: false, polling: {}}
 
 export function analysis (state = initialState, action) {
   switch (action.type) {
@@ -29,20 +29,22 @@ export function analysis (state = initialState, action) {
       return newState
     }
     case analysisConstants.ANALYSIS_STATUS_SUCCESS: {
-      const newState = state
-      newState.polling = {
-        ...newState.polling,
+      state.polling = {
+        ...state.polling,
         [action.uuid]: false
       }
-      return newState
+      return {
+        ...state
+      }
     }
     case analysisConstants.ANALYSIS_STATUS_FAILURE: {
-      const newState = state
-      newState.polling = {
-        ...newState.polling,
+      state.polling = {
+        ...state.polling,
         [action.uuid]: false
       }
-      return newState
+      return {
+        ...state
+      }
     }
     case analysisConstants.ANALYSIS_REPORT_REQUEST:
       return {
@@ -50,22 +52,24 @@ export function analysis (state = initialState, action) {
         isRequestingReport: true
       }
     case analysisConstants.ANALYSIS_REPORT_SUCCESS: {
-      const newState = state
-      newState.reports = {
-        ...newState.reports,
-        isRequestingReport: false,
+      state.reports = {
+        ...state.reports,
         [action.uuid]: action.report
       }
-      return newState
+      return {
+        ...state,
+        isRequestingReport: false
+      }
     }
     case analysisConstants.ANALYSIS_REPORT_FAILURE: {
-      const newState = state
-      newState.reports = {
-        ...newState.reports,
-        isRequestingReport: false,
+      state.reports = {
+        ...state.reports,
         [action.uuid]: null
       }
-      return newState
+      return {
+        ...state,
+        isRequestingReport: false
+      }
     }
     default:
       return state
