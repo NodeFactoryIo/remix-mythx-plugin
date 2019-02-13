@@ -74,7 +74,6 @@ function submitContractsForAnalysation (contractFiles, sources) {
         sourceMap: contract.evm.bytecode.sourceMap,
         deployedSourceMap: contract.evm.deployedBytecode.sourceMap,
         sources: Object.entries(sources).reduce((result, item) => {
-          console.log(item)
           result[item[0]] = {
             source: item[1].content
           }
@@ -142,7 +141,6 @@ function handleResponse (response) {
     }
     if (!response.ok) {
       if (response.status === 401) {
-        console.log('Logging out')
         // auto logout if 401 response returned from api
         logout()
         window.location.reload(true)

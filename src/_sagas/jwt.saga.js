@@ -24,5 +24,9 @@ function * refreshToken (action) {
 }
 
 export function * watchAuthExpiry () {
+  const user = JSON.parse(localStorage.getItem('user'))
+  if(user && user.auth && user.auth.access) {
+    yield call(refreshToken, {user})
+  }
   yield takeEvery([userConstants.LOGIN_SUCCESS, userConstants.REFRESH_SUCCESS], refreshToken)
 }

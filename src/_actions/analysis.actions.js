@@ -12,7 +12,6 @@ function analyzeContracts (contracts, source) {
 
     mythxService.submitContractsForAnalysation(contracts, source)
       .then(requests => {
-        console.log({requests})
         return dispatch({
           type: analysisConstants.ANALYSIS_SUBMIT_SUCCESS,
           payload: requests
