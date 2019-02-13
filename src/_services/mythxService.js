@@ -3,6 +3,7 @@ import { authHeader } from '../_helpers/auth-header'
 
 export const mythxService = {
   login,
+  refreshToken,
   logout,
   getAnalysationStatus,
   getAnalysationReport,
@@ -23,6 +24,25 @@ function login (address, password) {
   return fetch(`${config.MythX.apiUrl}/auth/login`, requestOptions)
     .then(handleResponse)
     .then(auth => {
+      user.auth = auth
+      // store user details and jwt token in local storage to keep user logged
+      // in between page refreshes
+      localStorage.setItem('user', JSON.stringify(user))
+      return user
+    })
+}
+
+function refreshToken(accessToken, refreshToken) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({accessToken, refreshToken})
+  }
+
+  return fetch(`${config.MythX.apiUrl}/auth/refresh`, requestOptions)
+    .then(handleResponse)
+    .then(auth => {
+      const user = JSON.parse(localStorage.getItem('user') || "{}")
       user.auth = auth
       // store user details and jwt token in local storage to keep user logged
       // in between page refreshes
