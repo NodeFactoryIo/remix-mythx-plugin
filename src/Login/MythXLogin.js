@@ -85,5 +85,5 @@ function mapStateToProps (state) {
   }
 }
 
-const connectedHomePage = connect(mapStateToProps)(MythxLogin)
-export { connectedHomePage as MythxLogin }
+const connectedLogin = connect(mapStateToProps)(MythxLogin)
+export { connectedLogin as MythxLogin }
