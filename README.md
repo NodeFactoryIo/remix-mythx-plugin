@@ -2,7 +2,7 @@
 
 ## Installation
 
-Add following json to Remix plugin section and lick `Load`:
+Add following json to Remix plugin section and click `Load`:
 ```json
 {
   "title": "MythX Verification",
